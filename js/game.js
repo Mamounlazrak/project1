@@ -4,6 +4,7 @@ class Game {
         this.ctx = this.canvas.getContext('2d'); 
         this.intervalId = null;
         this.keys = [];
+        this.strings = {};
         this.frames = 0; 
         this.intervalId = null;
         this.fps = 1000 / 60; 
@@ -12,6 +13,7 @@ class Game {
 
     start() {
         const controls = new Controls(this);
+        this.strings = new Key(this);
         controls.addControls(); 
         this.intervalId = setInterval(() => {
             this.update();
@@ -20,6 +22,7 @@ class Game {
 
     update() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.strings.drawStrings();
         this.createKeys();
         this.updateKeysPosition();
         this.drawScore();
@@ -35,7 +38,7 @@ class Game {
     updateKeysPosition() {
         this.keys.forEach((key) => {
             key.y++;
-            key.draw();
+            key.drawKeys();
         })
     }
 

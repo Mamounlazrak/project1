@@ -1,7 +1,8 @@
 class Controls {
     constructor(game) {
         this.game = game;      
-        this.cooldown = false;
+        this.cooldownScore = false;
+        this.cooldownTiming = false; 
         this.goodTiming = [500, 516, 584, 600]; 
         this.veryGoodTiming = [517 ,532, 568, 583];
         this.perfectTiming = [533, 567]; 
@@ -14,71 +15,77 @@ class Controls {
             switch(e.code) {
                 case 'KeyQ':
                     this.game.keys.forEach((key) => {
-                        if(!this.cooldown && key.x === 0 && this.getTiming(key) === 'good') {
+                        let timing = this.getTiming(key);
+                        if(!this.cooldownScore && key.x === 0 && timing === 'good') {
                             this.game.score += 1;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 0 && this.getTiming(key) === 'veryGood') {
+                            this.startCooldownScore();
+                            this.drawTiming(timing, key.x, key.y); //to be polished and implemented for other timings
+                        } else if(!this.cooldownScore && key.x === 0 && timing === 'veryGood') {
                             this.game.score += 2;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 0 && this.getTiming(key) === 'perfect') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 0 && timing === 'perfect') {
                             this.game.score += 3;
-                            this.startCooldown();
+                            this.startCooldownScore();
                         }
                     });
                     break;
                 case 'KeyW':
                     this.game.keys.forEach((key) => {
-                        if(!this.cooldown && key.x === 102 && this.getTiming(key) === 'good') {
+                        let timing = this.getTiming(key);
+                        if(!this.cooldownScore && key.x === 102 && timing === 'good') {
                             this.game.score += 1;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 102 && this.getTiming(key) === 'veryGood') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 102 && timing === 'veryGood') {
                             this.game.score += 2;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 102 && this.getTiming(key) === 'perfect') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 102 && timing === 'perfect') {
                             this.game.score += 3;
-                            this.startCooldown();
+                            this.startCooldownScore();
                         }
                     })
                     break;
                 case 'KeyE':
                     this.game.keys.forEach((key) => {
-                        if(!this.cooldown && key.x === 204 && this.getTiming(key) === 'good') {
+                        let timing = this.getTiming(key);
+                        if(!this.cooldownScore && key.x === 204 && timing === 'good') {
                             this.game.score += 1;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 204 && this.getTiming(key) === 'veryGood') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 204 && timing === 'veryGood') {
                             this.game.score += 2;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 204 && this.getTiming(key) === 'perfect') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 204 && timing === 'perfect') {
                             this.game.score += 3;
-                            this.startCooldown();
+                            this.startCooldownScore();
                         }
                     })
                     break;
                 case 'KeyR':
                     this.game.keys.forEach((key) => {
-                        if(!this.cooldown && key.x === 306 && this.getTiming(key) === 'good') {
+                        let timing = this.getTiming(key);
+                        if(!this.cooldownScore && key.x === 306 && timing === 'good') {
                             this.game.score += 1;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 306 && this.getTiming(key) === 'veryGood') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 306 && timing === 'veryGood') {
                             this.game.score += 2;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 306 && this.getTiming(key) === 'perfect') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 306 && timing === 'perfect') {
                             this.game.score += 3;
-                            this.startCooldown();
+                            this.startCooldownScore();
                         }
                     })
                     break;
                 case 'KeyT':
                     this.game.keys.forEach((key) => {
-                        if(!this.cooldown && key.x === 408 && this.getTiming(key) === 'good') {
+                        let      timing = this.getTiming(key);
+                        if(!this.cooldownScore && key.x === 408 && timing === 'good') {
                             this.game.score += 1;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 408 && this.getTiming(key) === 'veryGood') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 408 && timing === 'veryGood') {
                             this.game.score += 2;
-                            this.startCooldown();
-                        } else if(!this.cooldown && key.x === 408 && this.getTiming(key) === 'perfect') {
+                            this.startCooldownScore();
+                        } else if(!this.cooldownScore && key.x === 408 && timing === 'perfect') {
                             this.game.score += 3;
-                            this.startCooldown();
+                            this.startCooldownScore();
                         }
                     })
                     break;
@@ -86,11 +93,22 @@ class Controls {
         })
     }
 
-    startCooldown() {
-        this.cooldown = true;
+    startCooldownScore() {
+        this.cooldownScore = true;
         setTimeout(() => {
-            this.cooldown = false;
+            this.cooldownScore = false;
         }, 2000);
+    }
+
+    startCooldownTiming() {
+        let intervalId = setInterval(() => {
+            this.game.ctx.font = '12px serif';
+            this.game.ctx.fillStyle = 'black'; 
+            this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
+        }, this.game.fps);
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 1000);
     }
 
     getTiming(key) {
@@ -102,4 +120,16 @@ class Controls {
             return 'perfect'
         }
     }
+
+    drawTiming(timing, x, y) {
+        let intervalId = setInterval(() => {
+            this.game.ctx.font = '12px serif';
+            this.game.ctx.fillStyle = 'black'; 
+            this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
+        }, this.game.fps);
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 1000);
+    }
+
 }
