@@ -9,6 +9,12 @@ class Game {
         this.intervalId = null;
         this.fps = 1000 / 60; 
         this.score = 0; 
+        
+        this.timing = {
+            word: '', 
+            x: null, 
+            y: null
+        };
     }
 
     start() {
@@ -26,6 +32,7 @@ class Game {
         this.createKeys();
         this.updateKeysPosition();
         this.drawScore();
+        this.drawTiming();
         this.frames++; 
     }
 
@@ -47,5 +54,27 @@ class Game {
         this.ctx.fillStyle = 'black'; 
         this.ctx.fillText(`Score: ${this.score}`, 30, 100);
     }
+
+    drawTiming() {
+            this.ctx.font = '16px serif';
+            this.ctx.fillStyle = 'black'; 
+            if(this.timing.word != '') {
+                this.ctx.fillText(`${this.timing.word}`, this.timing.x + 20, this.timing.y + 4);
+                setTimeout(() => {
+                    this.timing.word = '';
+                    this.timing.x = null;
+                    this.timing.y = null; 
+                }, 1000);
+
+            }
+        //     this.ctx.fillText(`${this.timing.word}`, this.timing.x + 20, this.timing.y + 4);
+        // setTimeout(() => {
+        //     this.timing.word = '';
+        //     this.timing.x = null;
+        //     this.timing.y = null; 
+        // }, 1000);
+    }
+
+
 }
 

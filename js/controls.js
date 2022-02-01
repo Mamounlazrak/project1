@@ -19,7 +19,13 @@ class Controls {
                         if(!this.cooldownScore && key.x === 0 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
-                            this.drawTiming(timing, key.x, key.y); //to be polished and implemented for other timings
+                            // this.drawTiming(timing, key.x, key.y); //to be polished and implemented for other timings
+
+                            this.passTimingInfo('good', key.x, key.y);
+                            // this.game.timing.word = 'good'; 
+                            // this.game.timing.x = key.x; 
+                            // this.game.timing.y = key.y;
+
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
@@ -121,15 +127,25 @@ class Controls {
         }
     }
 
-    drawTiming(timing, x, y) {
-        let intervalId = setInterval(() => {
-            this.game.ctx.font = '12px serif';
-            this.game.ctx.fillStyle = 'black'; 
-            this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
-        }, this.game.fps);
-        setTimeout(() => {
-            clearInterval(intervalId);
-        }, 1000);
+    passTimingInfo(timing, x, y) {
+
+        this.game.timing.word = timing; 
+        this.game.timing.x = x; 
+        this.game.timing.y = y;
+
     }
+
+    // drawTiming(timing, x, y) {
+    //     let intervalId = setInterval(() => {
+    //         this.game.ctx.font = '16px serif';
+    //         this.game.ctx.fillStyle = 'black'; 
+    //         this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
+    //     }, 1);
+    //     setTimeout(() => {
+    //         this.timing.word = '';
+    //         this.timing.x = null;
+    //         this.timing.y = null; 
+    //     }, 1000);
+    // }
 
 }
