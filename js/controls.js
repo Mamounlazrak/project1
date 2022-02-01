@@ -19,19 +19,17 @@ class Controls {
                         if(!this.cooldownScore && key.x === 0 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
-                            // this.drawTiming(timing, key.x, key.y); //to be polished and implemented for other timings
-
                             this.passTimingInfo('good', key.x, key.y);
-                            // this.game.timing.word = 'good'; 
-                            // this.game.timing.x = key.x; 
-                            // this.game.timing.y = key.y;
-
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
+                            this.passTimingInfo('very good', key.x, key.y);
+
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
+                            this.passTimingInfo('perfect!', key.x, key.y);
+
                         }
                     });
                     break;
@@ -41,12 +39,18 @@ class Controls {
                         if(!this.cooldownScore && key.x === 102 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
+                            this.passTimingInfo('good', key.x, key.y);
+
                         } else if(!this.cooldownScore && key.x === 102 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
+                            this.passTimingInfo('very good', key.x, key.y);
+
                         } else if(!this.cooldownScore && key.x === 102 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
+                            this.passTimingInfo('perfect!', key.x, key.y);
+
                         }
                     })
                     break;
@@ -56,12 +60,16 @@ class Controls {
                         if(!this.cooldownScore && key.x === 204 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
+                            this.passTimingInfo('good', key.x, key.y);
                         } else if(!this.cooldownScore && key.x === 204 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
+                            this.passTimingInfo('very good', key.x, key.y);
+
                         } else if(!this.cooldownScore && key.x === 204 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
+                            this.passTimingInfo('perfect!', key.x, key.y);
                         }
                     })
                     break;
@@ -71,27 +79,34 @@ class Controls {
                         if(!this.cooldownScore && key.x === 306 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
+                            this.passTimingInfo('good', key.x, key.y);
                         } else if(!this.cooldownScore && key.x === 306 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
+                            this.passTimingInfo('very good', key.x, key.y);
                         } else if(!this.cooldownScore && key.x === 306 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
+                            this.passTimingInfo('perfect!', key.x, key.y);
                         }
                     })
                     break;
                 case 'KeyT':
                     this.game.keys.forEach((key) => {
-                        let      timing = this.getTiming(key);
+                        let timing = this.getTiming(key);
                         if(!this.cooldownScore && key.x === 408 && timing === 'good') {
                             this.game.score += 1;
                             this.startCooldownScore();
+                            this.passTimingInfo('good', key.x, key.y);
                         } else if(!this.cooldownScore && key.x === 408 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
+                            this.passTimingInfo('very good!', key.x, key.y);
                         } else if(!this.cooldownScore && key.x === 408 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
+                            this.passTimingInfo('perfect!', key.x, key.y);
+
                         }
                     })
                     break;

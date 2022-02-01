@@ -2,8 +2,7 @@ class Key {
     constructor(game) {
         this.game = game;
         this.possibleX = [0, 102, 204, 306, 408]; 
-        // this.x = this.possibleX[Math.floor(Math.random() * this.possibleX.length)];
-        this.x = 0;
+        this.x = this.possibleX[Math.floor(Math.random() * this.possibleX.length)];
         this.y = 0;
         this.width = 100; 
         this.height = 100;
