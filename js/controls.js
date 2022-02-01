@@ -6,6 +6,9 @@ class Controls {
         this.goodTiming = [500, 516, 584, 600]; 
         this.veryGoodTiming = [517 ,532, 568, 583];
         this.perfectTiming = [533, 567]; 
+        this.comboGoodTiming = 0;
+        this.comboVeryGoodTiming = 0; 
+        this.comboPerfectTiming = 0;
         this.soundObject = null;
 
     }
@@ -15,9 +18,13 @@ class Controls {
         window.addEventListener('keydown', (e) => {
             switch(e.code) {
                 case 'KeyQ':
-                    this.game.keys.forEach((key) => {
+                    this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!this.cooldownScore && key.x === 0 && timing === 'good') {
+                            this.updateCombo(index, 'good');
+                            console.log(this.comboGoodTiming); 
+                            // console.log(key.timing, 'key timing');
+                            if (index != 0) {console.log(this.game.keys[index - 1].timing)}
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
@@ -29,15 +36,11 @@ class Controls {
                             this.startCooldownScore();
                             this.passTimingInfo('very good', key.x, key.y);
                             this.addAnimation(key);
-
-
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
                             this.passTimingInfo('perfect!', key.x, key.y);
                             this.addAnimation(key);
-
-
                         }
                     });
                     break;
@@ -151,13 +154,27 @@ class Controls {
         }, 2000);
     }
 
+    // getTiming(key) {
+    //     if( (key.y >= this.goodTiming[0] && key.y <= this.goodTiming[1]) || (key.y >= this.goodTiming[2] && key.y <= this.goodTiming[3]) ) {
+    //         return 'good'; 
+    //     } else if( (key.y >= this.veryGoodTiming[0] && key.y <= this.veryGoodTiming[1]) || (key.y >= this.veryGoodTiming[2] && key.y <= this.veryGoodTiming[3]) ) {
+    //         return 'veryGood';
+    //     } else if(key.y >= this.perfectTiming[0] && key.y <= this.perfectTiming[1]) {
+    //         return 'perfect'
+    //     }
+    // }
+
+
     getTiming(key) {
         if( (key.y >= this.goodTiming[0] && key.y <= this.goodTiming[1]) || (key.y >= this.goodTiming[2] && key.y <= this.goodTiming[3]) ) {
+            key.timing = 'good'; 
             return 'good'; 
         } else if( (key.y >= this.veryGoodTiming[0] && key.y <= this.veryGoodTiming[1]) || (key.y >= this.veryGoodTiming[2] && key.y <= this.veryGoodTiming[3]) ) {
+            key.timing = 'veryGood';
             return 'veryGood';
         } else if(key.y >= this.perfectTiming[0] && key.y <= this.perfectTiming[1]) {
-            return 'perfect'
+            key.timing = 'perfect';
+            return 'perfect'; 
         }
     }
 
@@ -184,9 +201,24 @@ class Controls {
 
     addAnimation (key){
         key.animation = true;
-        console.log(key.animation);
         setTimeout(() => {
             key.animation = false;
         }, 200);
+    }
+
+    updateCombo(index, timing) {
+         if(index != 0 && this.game.keys[index - 1].timing === timing) {
+             switch (timing) {
+                 case 'good':
+                     this.comboGoodTiming++;
+                     break;
+                // case 'veryGood':
+                //     this.comboVeryGoodTiming++;
+                //     break;
+                // case 'perfect':
+                //     this.comboPerfectTiming++;
+                //     break;
+             }
+        }
     }
 }
