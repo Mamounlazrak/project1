@@ -2,6 +2,7 @@ class Key {
     constructor(game) {
         this.game = game;
         this.possibleX = [0, 102, 204, 306, 408]; 
+        this.x = 0;
         this.x = this.possibleX[Math.floor(Math.random() * this.possibleX.length)];
         this.y = 0;
         this.width = 100; 
@@ -9,11 +10,21 @@ class Key {
         this.stringHeight = 500; 
         this.stringLineWidth = 1;
         this.possibleColor = ['green', 'red', 'yellow', 'blue', 'orange'];  
-        this.color = this.getColor(); 
+        this.color = this.getColor();
+        this.animation = false;  
     }
 
     drawKeys() {
         this.game.ctx.fillStyle = this.color;
+        if(this.animation) {
+            this.width = 110;
+            this.height = 110;
+            this.game.ctx.shadowBlur = 30;
+            this.game.ctx.shadowColor = this.color;
+        } else {
+            this.width = 100; 
+            this.height = 100;
+            this.game.ctx.shadowBlur = 0};
         this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 

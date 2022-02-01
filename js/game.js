@@ -67,14 +67,6 @@ class Game {
                 }, 1000);
 
             }
-        //     this.ctx.fillText(`${this.timing.word}`, this.timing.x + 20, this.timing.y + 4);
-        // setTimeout(() => {
-        //     this.timing.word = '';
-        //     this.timing.x = null;
-        //     this.timing.y = null; 
-        // }, 1000);
     }
-
-
 }
 

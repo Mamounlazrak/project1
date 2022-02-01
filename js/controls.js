@@ -6,6 +6,7 @@ class Controls {
         this.goodTiming = [500, 516, 584, 600]; 
         this.veryGoodTiming = [517 ,532, 568, 583];
         this.perfectTiming = [533, 567]; 
+        this.soundObject = null;
 
     }
 
@@ -20,15 +21,22 @@ class Controls {
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
+                            this.sound("/sound/key01.mp3");
+                            this.soundObject.play();
+                            this.addAnimation(key);
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
                             this.passTimingInfo('very good', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         } else if(!this.cooldownScore && key.x === 0 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
                             this.passTimingInfo('perfect!', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         }
                     });
@@ -40,16 +48,22 @@ class Controls {
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         } else if(!this.cooldownScore && key.x === 102 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
                             this.passTimingInfo('very good', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         } else if(!this.cooldownScore && key.x === 102 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
                             this.passTimingInfo('perfect!', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         }
                     })
@@ -61,15 +75,21 @@ class Controls {
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
+                            this.addAnimation(key);
+
                         } else if(!this.cooldownScore && key.x === 204 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
                             this.passTimingInfo('very good', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         } else if(!this.cooldownScore && key.x === 204 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
                             this.passTimingInfo('perfect!', key.x, key.y);
+                            this.addAnimation(key);
+
                         }
                     })
                     break;
@@ -80,10 +100,14 @@ class Controls {
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
+                            this.addAnimation(key);
+
                         } else if(!this.cooldownScore && key.x === 306 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
                             this.passTimingInfo('very good', key.x, key.y);
+                            this.addAnimation(key);
+
                         } else if(!this.cooldownScore && key.x === 306 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
@@ -98,14 +122,20 @@ class Controls {
                             this.game.score += 1;
                             this.startCooldownScore();
                             this.passTimingInfo('good', key.x, key.y);
+                            this.addAnimation(key);
+
                         } else if(!this.cooldownScore && key.x === 408 && timing === 'veryGood') {
                             this.game.score += 2;
                             this.startCooldownScore();
                             this.passTimingInfo('very good!', key.x, key.y);
+                            this.addAnimation(key);
+
                         } else if(!this.cooldownScore && key.x === 408 && timing === 'perfect') {
                             this.game.score += 3;
                             this.startCooldownScore();
                             this.passTimingInfo('perfect!', key.x, key.y);
+                            this.addAnimation(key);
+
 
                         }
                     })
@@ -121,17 +151,6 @@ class Controls {
         }, 2000);
     }
 
-    startCooldownTiming() {
-        let intervalId = setInterval(() => {
-            this.game.ctx.font = '12px serif';
-            this.game.ctx.fillStyle = 'black'; 
-            this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
-        }, this.game.fps);
-        setTimeout(() => {
-            clearInterval(intervalId);
-        }, 1000);
-    }
-
     getTiming(key) {
         if( (key.y >= this.goodTiming[0] && key.y <= this.goodTiming[1]) || (key.y >= this.goodTiming[2] && key.y <= this.goodTiming[3]) ) {
             return 'good'; 
@@ -143,24 +162,31 @@ class Controls {
     }
 
     passTimingInfo(timing, x, y) {
-
         this.game.timing.word = timing; 
         this.game.timing.x = x; 
         this.game.timing.y = y;
-
     }
 
-    // drawTiming(timing, x, y) {
-    //     let intervalId = setInterval(() => {
-    //         this.game.ctx.font = '16px serif';
-    //         this.game.ctx.fillStyle = 'black'; 
-    //         this.game.ctx.fillText(`${timing}`, x + 20, y + 4);
-    //     }, 1);
-    //     setTimeout(() => {
-    //         this.timing.word = '';
-    //         this.timing.x = null;
-    //         this.timing.y = null; 
-    //     }, 1000);
-    // }
+    sound(src) {
+        this.soundObject = document.createElement("audio");
+        this.soundObject.src = src; 
+        this.soundObject.setAttribute("preload", "auto");
+        this.soundObject.setAttribute("controls", "none");
+        this.soundObject.style.display = "none";
+        document.body.appendChild(this.soundObject);
+        this.play = function(){
+            this.soundObject.play();
+        }
+        this.stop = function(){
+            this.soundObject.pause();
+        }
+    }
 
+    addAnimation (key){
+        key.animation = true;
+        console.log(key.animation);
+        setTimeout(() => {
+            key.animation = false;
+        }, 200);
+    }
 }
