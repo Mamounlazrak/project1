@@ -14,9 +14,12 @@ class Game {
             x: null, 
             y: null
         };
-        this.comboGoodTiming = 0;
+        this.combo = {
+            goodTiming: 0, 
+            veryGoodTiming: 0, 
+            perfectTiming: 0
+        }
         this.comboImg = new Image();
-        
     }
 
     start() {
@@ -26,6 +29,10 @@ class Game {
         this.intervalId = setInterval(() => {
             this.update();
         }, this.fps);
+    }
+
+    stop() {
+        clearInterval(this.intervalId);
     }
 
     update() {
@@ -39,12 +46,11 @@ class Game {
             if(key.y > 600 && key.timing === '') {
                 key.timing = 'missed';
                 key.color = 'red';
-                this.comboGoodTiming = 0;
+                this.combo.goodTiming = 0;
             }
         })
         this.drawCombo();
-
-
+        this.checkEndOfGame(); 
         this.frames++; 
     }
 
@@ -82,22 +88,24 @@ class Game {
     }
 
      drawCombo() {
-        if (this.comboGoodTiming > 2) {
+        if (this.combo.goodTiming > 2) {
 
             this.ctx.shadowColor = '#FF008E';
             this.ctx.shadowBlur = 20; 
             this.ctx.strokeStyle = '#FF008E';
             this.ctx.strokeRect(0, 0, this.canvas.width, this.canvas.height);
-            // this.comboImg.src = '/images/FireIcon.png';
-            // this.ctx.drawImage(this.comboImg, 400, 350, 40, 80);
+            this.comboImg.src = '/images/FireIcon.png';
+            this.ctx.drawImage(this.comboImg, 400, 350, 40, 80);
             this.ctx.shadowBlur = 0;
-            this.ctx.fillText(`Combo: ${this.comboGoodTiming}`, 200, 100);
-            //        console.log()
-            // this.ctx.shadowBlur = 30;
-            // this.ctx.shadowColor = 'red';
-            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillText(`Combo: ${this.combo.goodTiming}`, 200, 100);
         }
     }
 
+    checkEndOfGame() {
+        if(this.frames === 9000) {
+            this.stop();
+        }
+    }
+    
 }
 
