@@ -35,7 +35,16 @@ class Game {
         this.updateKeysPosition();
         this.drawScore();
         this.drawTiming();
+        this.keys.forEach((key) => {
+            if(key.y > 600 && key.timing === '') {
+                key.timing = 'missed';
+                key.color = 'red';
+                this.comboGoodTiming = 0;
+            }
+        })
         this.drawCombo();
+
+
         this.frames++; 
     }
 
@@ -74,9 +83,16 @@ class Game {
 
      drawCombo() {
         if (this.comboGoodTiming > 2) {
-            this.comboImg.src = '/images/FireIcon.png';
-            this.ctx.drawImage(this.comboImg, 400, 350, 40, 80);
-    //        console.log()
+
+            this.ctx.shadowColor = '#FF008E';
+            this.ctx.shadowBlur = 20; 
+            this.ctx.strokeStyle = '#FF008E';
+            this.ctx.strokeRect(0, 0, this.canvas.width, this.canvas.height);
+            // this.comboImg.src = '/images/FireIcon.png';
+            // this.ctx.drawImage(this.comboImg, 400, 350, 40, 80);
+            this.ctx.shadowBlur = 0;
+            this.ctx.fillText(`Combo: ${this.comboGoodTiming}`, 200, 100);
+            //        console.log()
             // this.ctx.shadowBlur = 30;
             // this.ctx.shadowColor = 'red';
             // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
