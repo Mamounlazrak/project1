@@ -9,12 +9,14 @@ class Game {
         this.intervalId = null;
         this.fps = 1000 / 60; 
         this.score = 0; 
-        
         this.timing = {
             word: '', 
             x: null, 
             y: null
         };
+        this.comboGoodTiming = 0;
+        this.comboImg = new Image();
+        
     }
 
     start() {
@@ -33,6 +35,7 @@ class Game {
         this.updateKeysPosition();
         this.drawScore();
         this.drawTiming();
+        this.drawCombo();
         this.frames++; 
     }
 
@@ -56,7 +59,7 @@ class Game {
     }
 
     drawTiming() {
-            this.ctx.font = '16px serif';
+            this.ctx.font = '32px serif';
             this.ctx.fillStyle = 'black'; 
             if(this.timing.word != '') {
                 this.ctx.fillText(`${this.timing.word}`, this.timing.x + 20, this.timing.y + 4);
@@ -68,5 +71,17 @@ class Game {
 
             }
     }
+
+     drawCombo() {
+        if (this.comboGoodTiming > 2) {
+            this.comboImg.src = '/images/FireIcon.png';
+            this.ctx.drawImage(this.comboImg, 400, 350, 40, 80);
+    //        console.log()
+            // this.ctx.shadowBlur = 30;
+            // this.ctx.shadowColor = 'red';
+            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+
 }
 

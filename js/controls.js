@@ -6,7 +6,7 @@ class Controls {
         this.goodTiming = [500, 516, 584, 600]; 
         this.veryGoodTiming = [517 ,532, 568, 583];
         this.perfectTiming = [533, 567]; 
-        this.comboGoodTiming = 0;
+        // this.comboGoodTiming = 0;
         this.comboVeryGoodTiming = 0; 
         this.comboPerfectTiming = 0;
         this.soundObject = null;
@@ -22,8 +22,7 @@ class Controls {
                         let timing = this.getTiming(key);
                         if(!this.cooldownScore && key.x === 0 && timing === 'good') {
                             this.updateCombo(index, 'good');
-                            console.log(this.comboGoodTiming); 
-                            // console.log(key.timing, 'key timing');
+                             console.log(this.game.comboGoodTiming, 'THEtiming');
                             if (index != 0) {console.log(this.game.keys[index - 1].timing)}
                             this.game.score += 1;
                             this.startCooldownScore();
@@ -154,15 +153,7 @@ class Controls {
         }, 2000);
     }
 
-    // getTiming(key) {
-    //     if( (key.y >= this.goodTiming[0] && key.y <= this.goodTiming[1]) || (key.y >= this.goodTiming[2] && key.y <= this.goodTiming[3]) ) {
-    //         return 'good'; 
-    //     } else if( (key.y >= this.veryGoodTiming[0] && key.y <= this.veryGoodTiming[1]) || (key.y >= this.veryGoodTiming[2] && key.y <= this.veryGoodTiming[3]) ) {
-    //         return 'veryGood';
-    //     } else if(key.y >= this.perfectTiming[0] && key.y <= this.perfectTiming[1]) {
-    //         return 'perfect'
-    //     }
-    // }
+
 
 
     getTiming(key) {
@@ -210,7 +201,7 @@ class Controls {
          if(index != 0 && this.game.keys[index - 1].timing === timing) {
              switch (timing) {
                  case 'good':
-                     this.comboGoodTiming++;
+                     this.game.comboGoodTiming++;
                      break;
                 // case 'veryGood':
                 //     this.comboVeryGoodTiming++;
@@ -219,6 +210,6 @@ class Controls {
                 //     this.comboPerfectTiming++;
                 //     break;
              }
-        }
+        } else {this.game.comboGoodTiming = 0;}
     }
 }
