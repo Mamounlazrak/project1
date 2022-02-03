@@ -18,6 +18,7 @@ class Controls {
                     this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 0 && timing === 'good') {
+                            key.timing = 'good'; 
                             key.pressed = true;
                             this.game.score += 1;
                             this.printCommand(key);
@@ -45,6 +46,7 @@ class Controls {
                     this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 102 && timing === 'good') {
+                            key.timing = 'good'; 
                             key.pressed = true;
                             this.game.score += 1;
                             this.printCommand(key);
@@ -72,6 +74,7 @@ class Controls {
                     this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 204 && timing === 'good') {
+                            key.timing = 'good'; 
                             key.pressed = true;
                             this.game.score += 1;
                             this.printCommand(key);
@@ -99,6 +102,7 @@ class Controls {
                     this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 306 && timing === 'good') {
+                            key.timing = 'good'; 
                             key.pressed = true;
                             this.game.score += 1;
                             this.printCommand(key);
