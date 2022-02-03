@@ -18,22 +18,22 @@ class Controls {
                     this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 0 && timing === 'good') {
-                            this.updateCombo(index, 'good');
-                             console.log(this.game.comboGoodTiming, 'THEtiming');
-                            if (index != 0) {console.log(this.game.keys[index - 1].timing)}
-                            this.game.score += 1;
                             key.pressed = true;
+                            this.game.score += 1;
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.passTimingInfo('good', key.x, key.y);
-                            this.sound("/sound/key01.mp3");
-                            this.soundObject.play();
                             this.addAnimation(key);
                         } else if(!key.pressed && key.x === 0 && timing === 'veryGood') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 2;
                             key.pressed = true;
-
                             this.passTimingInfo('very good', key.x, key.y);
                             this.addAnimation(key);
                         } else if(!key.pressed && key.x === 0 && timing === 'perfect') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 3;
                             key.pressed = true;
                             this.passTimingInfo('perfect!', key.x, key.y);
@@ -42,112 +42,110 @@ class Controls {
                     });
                     break;
                 case 'KeyW':
-                    this.game.keys.forEach((key) => {
+                    this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 102 && timing === 'good') {
-                            this.game.score += 1;
                             key.pressed = true;
-
+                            this.game.score += 1;
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.passTimingInfo('good', key.x, key.y);
                             this.addAnimation(key);
-
-
                         } else if(!key.pressed && key.x === 102 && timing === 'veryGood') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 2;
                             key.pressed = true;
-
                             this.passTimingInfo('very good', key.x, key.y);
                             this.addAnimation(key);
-
-
                         } else if(!key.pressed && key.x === 102 && timing === 'perfect') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 3;
                             key.pressed = true;
                             this.passTimingInfo('perfect!', key.x, key.y);
                             this.addAnimation(key);
-
-
                         }
                     })
                     break;
                 case 'KeyE':
-                    this.game.keys.forEach((key) => {
+                    this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 204 && timing === 'good') {
-                            this.game.score += 1;
                             key.pressed = true;
-
+                            this.game.score += 1;
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.passTimingInfo('good', key.x, key.y);
                             this.addAnimation(key);
-
                         } else if(!key.pressed && key.x === 204 && timing === 'veryGood') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 2;
                             key.pressed = true;
-
                             this.passTimingInfo('very good', key.x, key.y);
                             this.addAnimation(key);
-
-
                         } else if(!key.pressed && key.x === 204 && timing === 'perfect') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 3;
                             key.pressed = true;
-
                             this.passTimingInfo('perfect!', key.x, key.y);
                             this.addAnimation(key);
-
                         }
                     })
                     break;
                 case 'KeyR':
-                    this.game.keys.forEach((key) => {
+                    this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 306 && timing === 'good') {
-                            this.game.score += 1;
                             key.pressed = true;
-
+                            this.game.score += 1;
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.passTimingInfo('good', key.x, key.y);
                             this.addAnimation(key);
-
                         } else if(!key.pressed && key.x === 306 && timing === 'veryGood') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 2;
                             key.pressed = true;
-
                             this.passTimingInfo('very good', key.x, key.y);
                             this.addAnimation(key);
-
                         } else if(!key.pressed && key.x === 306 && timing === 'perfect') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 3;
                             key.pressed = true;
-
                             this.passTimingInfo('perfect!', key.x, key.y);
+                            this.addAnimation(key);
                         }
                     })
                     break;
                 case 'KeyT':
-                    this.game.keys.forEach((key) => {
+                    this.game.keys.forEach((key, index) => {
                         let timing = this.getTiming(key);
                         if(!key.pressed && key.x === 408 && timing === 'good') {
-                            this.game.score += 1;
                             key.pressed = true;
-
+                            this.game.score += 1;
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.passTimingInfo('good', key.x, key.y);
                             this.addAnimation(key);
-
                         } else if(!key.pressed && key.x === 408 && timing === 'veryGood') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 2;
                             key.pressed = true;
-
                             this.passTimingInfo('very good!', key.x, key.y);
                             this.addAnimation(key);
-
                         } else if(!key.pressed && key.x === 408 && timing === 'perfect') {
+                            this.printCommand(key);
+                            this.updateCombo(index, 'good');
                             this.game.score += 3;
                             key.pressed = true;
-
                             this.passTimingInfo('perfect!', key.x, key.y);
                             this.addAnimation(key);
-
-
                         }
                     })
                     break;
@@ -203,12 +201,20 @@ class Controls {
                      this.game.combo.goodTiming++;
                      break;
                 case 'veryGood':
-                     this.game.combo.veryGoodTiming++;
+                     this.game.combo.goodTiming++;
                      break;
                 case 'perfect':
-                     this.game.combo.perfect++;
+                     this.game.combo.goodTiming++;
                      break;
              }
-        } else {this.game.combo.goodTiming = 0;}
+        } else {this.game.combo.goodTiming ++;}
     }
+
+    printCommand(key) {
+        key.timingPrint = true;
+        setTimeout(() => {
+            key.timingPrint = false;
+        }, 500);
+    }
+    
 }
