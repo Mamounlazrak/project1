@@ -51,3 +51,32 @@ body button {
     border-radius: 5px;
     margin-bottom: 20px;
   }
+
+  .green {
+      color: green;
+      font-weight: bold;
+  }
+
+  .red {
+    color: red;
+    font-weight: bold;
+}
+
+.pink {
+    color: pink;
+    font-weight: bold;
+}
+
+.blue {
+    color: blue;
+    font-weight: bold;
+}
+
+.orange {
+    color: orange;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
