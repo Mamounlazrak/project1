@@ -63,7 +63,6 @@ class Game {
         {
             this.sound.stop();
             this.stop();
-            this.ctx.fillText(`Score:`);
         }
     }
     
@@ -124,7 +123,9 @@ class Game {
                 
                 stop() {
                     clearInterval(this.intervalId);
-                    console.log('hey')
+                    setTimeout(() => {
+                        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                    }, 0);
                 }
             }
             

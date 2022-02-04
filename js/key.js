@@ -8,7 +8,7 @@ class Key {
         this.height = 100;
         this.stringHeight = 500; 
         this.stringLineWidth = 1;
-        this.possibleColor = ['green', 'purple', 'yellow', 'blue', 'orange'];  
+        this.possibleColor = ['green', 'purple', 'pink', 'blue', 'orange'];  
         this.color = this.getColor();
         this.animation = false;  
         this.timing = '';
@@ -52,7 +52,7 @@ class Key {
             case 102: 
                 return 'purple'; 
             case 204: 
-                return 'yellow'; 
+                return 'pink'; 
             case 306: 
                 return 'blue'; 
             case 408: 
