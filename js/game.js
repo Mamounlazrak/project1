@@ -59,7 +59,7 @@ class Game {
                 this.keys.push(new Key(this, this.possibleX.slice(0,2)));
                 this.keys.push(new Key(this, this.possibleX.slice(2)));
             }
-        } else if(this.frames > 4300)
+        } else if(this.frames > 4200)
         {
             this.sound.stop();
             this.stop();
