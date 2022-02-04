@@ -28,7 +28,7 @@ class Game {
         const controls = new Controls(this);
         this.strings = new Key(this, this.possibleX);
         controls.addControls(); 
-        this.sound = new Sound("/docs/assets/sound/PIANO + BACKING TRACK FULL.wav")
+        this.sound = new Sound("./docs/assets/sound/PIANO + BACKING TRACK FULL.wav")
         this.sound.play();
         this.intervalId = setInterval(() => {
             this.update();
@@ -87,7 +87,7 @@ class Game {
                         this.ctx.shadowBlur = 20; 
                         this.ctx.strokeStyle = '#FF008E';
                         this.ctx.strokeRect(0, 0, 510, this.canvas.height);
-                        this.comboImg.src = '/docs/assets/images/FireIcon.png';
+                        this.comboImg.src = './docs/assets/images/FireIcon.png';
                         this.ctx.drawImage(this.comboImg, 400, 30, 40, 80);
                         this.ctx.shadowBlur = 0;
                         this.ctx.fillText(`Combo: ${this.combo.goodTiming}`, 200, 100);
