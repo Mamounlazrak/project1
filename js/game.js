@@ -90,6 +90,12 @@ class Game {
                         this.ctx.drawImage(this.comboImg, 400, 30, 40, 80);
                         this.ctx.shadowBlur = 0;
                         this.ctx.fillText(`Combo: ${this.combo.goodTiming}`, 200, 100);
+                    } else {
+                        this.ctx.shadowColor = 'black';
+                        this.ctx.shadowBlur = 20; 
+                        this.ctx.strokeStyle = 'black';
+                        this.ctx.strokeRect(0, 0, 510, this.canvas.height);
+                        this.ctx.shadowBlur = 0;
                     }
                 }
                 
