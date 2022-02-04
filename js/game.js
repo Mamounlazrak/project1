@@ -125,6 +125,14 @@ class Game {
                     clearInterval(this.intervalId);
                     setTimeout(() => {
                         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                        this.ctx.font = '32px serif';
+                        this.ctx.fillStyle = 'black'; 
+                        this.ctx.fillText(`Your know how to groove!`, 50, 100);
+                        this.ctx.fillText(`Your score: ${this.score}`, 50, 200);
+                        this.ctx.fillText(`Best possible score: ${(this.keys.length - 1) * 3}`, 50, 300);
+                        this.ctx.fillText(`Your best combo: ${this.combo.goodTiming}`, 50, 400);
+                        this.ctx.fillText(`Best possible combo: ${this.keys.length - 1}`, 50, 500);
+
                     }, 0);
                 }
             }
