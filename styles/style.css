@@ -1,20 +1,47 @@
+
 .game-intro {
-    float: left; 
-    margin: 20px;
+display:flex;
+flex-direction: column;
+
+}
+
+.game-intro h1 {
+    margin: 40px auto 20px auto; 
+    font-size: 60px;
+
+}
+
+
+.game-intro h2 {
+    margin: 40px auto 20px auto; 
+    font-size: 40px;
+}
+
+
+.game-intro ul {
+    margin: 0 auto 20px auto; 
+
+} 
+
+.game-intro li {
+    font-size: 20px;
+}
+
+button {
+    margin: 0 auto;
 }
 
 .game-board {
-    float: left;
-    margin: 20px;
     margin-left: 200px;
-    /* border: 1px solid black; */
-    width: 508px;
-    height: 700px;
-    /* margin-top: 250px; */
+    display: flex;
+}
+.game-board canvas {
+    margin: 0 auto;
 }
 
 body button {
     font-size: 30px;
+    width: 250px;
     background-color: #870007;
     color: #fff;
     padding: 20px 40px;

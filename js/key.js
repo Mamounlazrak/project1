@@ -1,15 +1,14 @@
 class Key {
-    constructor(game) {
+    constructor(game, possibleX) {
         this.game = game;
-        this.possibleX = [0, 102, 204, 306, 408]; 
+        this.possibleX = possibleX; 
         this.x = this.possibleX[Math.floor(Math.random() * this.possibleX.length)]; 
-        // this.x = this.possibleX[4];
         this.y = 0;
         this.width = 100; 
         this.height = 100;
         this.stringHeight = 500; 
         this.stringLineWidth = 1;
-        this.possibleColor = ['green', 'red', 'yellow', 'blue', 'orange'];  
+        this.possibleColor = ['green', 'purple', 'yellow', 'blue', 'orange'];  
         this.color = this.getColor();
         this.animation = false;  
         this.timing = '';
@@ -51,7 +50,7 @@ class Key {
             case 0:
                 return 'green'; 
             case 102: 
-                return 'red'; 
+                return 'purple'; 
             case 204: 
                 return 'yellow'; 
             case 306: 
